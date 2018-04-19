@@ -6,7 +6,7 @@ output:
   pdf_document: default
   html_document: default
 header-includes:
-- \renewcommand{\floatpagefraction}{.8}%
+- \renewcommand{\floatpagefraction}{.6}%
 ---
 
 ```{r setup, include=FALSE}
@@ -17,7 +17,7 @@ library(readxl)
 
 ## Usefull ressources
 
-Some knowledge are mandatory to build this device. The following ressources should give an overview.
+Some knowledge are mandatory to build this device. The following links should give an overview. Over this document, it is assumed that you know the content of those ressources.
 
 3D printing:
 
@@ -48,20 +48,22 @@ Others:
 
 ### SCAD folder
 
-SCAD files can be found in thte SCAD fodler, normally, only the file OCLab.scad is of interest. Each different module can be observed separatly. To see the full apparatus, use the ```full_view``` module, the argument, ```printed``` 
+SCAD file: __full_view("printed")__.
+
+SCAD files can be found in the SCAD fodler, normally, only the file OCLab.scad is of interest. Each different module can be observed separatly by changing the argument of the ```full_view``` module.
 
 ### STL folder
 
-The STL files in this folder can contain either a specific part of the system (Y axis, X axsis etc...) or the full view with all the part. They are designed to be printed on a Prusa i3 MK2 with the _0.35mm fast_ setting. Normally, no supports are needed. Be sure to rotate the part so they print correctly.
+The STL files in this folder contain several files, only the file ```OCLab.stl``` should be considered up to date. Parts are designed to be printed on a Prusa i3 MK2 with the _0.35mm fast_ setting. Normally, no supports are needed but a brim could be usefull. Be sure to rotate the part so they print correctly.
 
-## Part inventory
+## Bill of material
 
-\scriptsize
+\tiny
 
 
 ```{r}
-data = read_excel("../BOM_OCLab.xlsx")
-kable(data,caption = "Bill of material")
+data = as.data.frame(read_excel("../BOM_OCLab.xlsx"))
+kable(data[1:(nrow(data)-1),],caption = paste0("Bill of material - Estimated total price: ",data[nrow(data),4], " Euro (VAT)"))
 ```
 
 \normalsize
@@ -70,20 +72,30 @@ kable(data,caption = "Bill of material")
 
 ## Frame
 
+SCAD file: __full_view("frame")__.
+
 Needed parts:
 
-* M5 nuts
+* 76x M5 nuts
 * 20x20 profiles
-* 20x20 cube connectors
-* 20x20 angle connectors
+* 6x 20x20 cube connectors
+* 10x 20x20 angle connectors
+* M5 screw for cube connector (sold with it normally)
+* M5*10 screw for angle connectors
+* printed parts: ```feets```; ```green_top_front```
+* closing plates
 
-Before assembling the frame, set the nuts to have one nut for each M5 screw shown in Figure \ref{figureFrame}. There is XXX in total, if needed, use the SCAD file to ge a 3D view: the module ```full_view``` with ```type = frame```.
+Before assembling the frame, set the nuts to have one nut for each M5 screw shown in Figure \ref{figureFrame}. There is 76 in total.
 
-![Frame assembly. \label{figureFrame}](figure/FigureFrame.png){width=50%}
+The plate to close the box can be added now or later but can make the assembly difficult, worth case scenario, they are put to early and need to be dismounted to grant access.
+
+![Frame assembly. \label{figureFrame}](figure/frame.png){width=50%}
 
 \pagebreak
 
 ## Y axis
+
+SCAD file: __full_view("Y axis")__.
 
 Needed parts:
 
@@ -109,11 +121,13 @@ Insert the rods in the lm8uu housing. The rods must then fit in the ```Y_end``` 
 
 The endstop must be screw to the ```Y_endstop_holder``` can be put appart for the moment and will be set during the assembly.
 
-![Y axis. \label{figureYaxis}](figure/Figure Y axis.png){width=50%}
+![Y axis. \label{figureYaxis}](figure/Y axis.png){width=50%}
 
 \pagebreak
 
 ## X axis
+
+SCAD file: __full_view("X axis")__.
 
 Needed parts:
 
@@ -123,16 +137,17 @@ Needed parts:
 * 1x endstop
 * 1x nema14
 * 1x gt2 pulley
-* printed parts: ```X_motor```, ```X_end```, ```X_moving```, ```HP_C6602_holder_holder```
+* printed parts: ```X_motor```, ```X_end```, ```X_moving```, ```HP_C6602_holder_holder```, ```X_end_stop_holder```
 * HP C6602 holder
-* 4x M4x20 (may be not 20, need check)
-* 4x M4 nut
+* 2x M4x20 
+* 2x M4 nut
 * 1x M3x30
-* 4x M3x16
-* 3x M2*15 (may be not 15, need check)
-* 3x M3 nut
+* 4x M3x10
+* 2x M2*10 
+* 1x M3 nut
+* 2x M2 nut
 
-![X axis. \label{figureXaxis}](figure/Figure X axis.png){width=50%}
+![X axis. \label{figureXaxis}](figure/X axis.png){width=50%}
 
 Assemble the ```X_motor```, ```X_end``` and ```X_moving``` parts as for the Y axis.
 
@@ -141,6 +156,9 @@ The link between the ```HP C6602 holder``` and ```X_moving``` is made by the ```
 \pagebreak
 
 ## Axis assembly
+
+
+SCAD file: __full_view("assembled")__.
 
 Needed parts:
 
@@ -152,7 +170,7 @@ Needed parts:
 
 Position the X axis and Y axis as in Figure \ref{figureAssembled}. The belt must be tightned and blocked with zip-ties.
 
-The X axis must be position as low as possible while avoiding colision with the plate hodler. The Y axsi will be positioned later when the cartridge will be able to fire.
+The X axis must be position as low as possible while avoiding colision with the plate hodler. The Y axis will be positioned later when the cartridge will be able to fire.
 
 
 
@@ -161,6 +179,8 @@ The X axis must be position as low as possible while avoiding colision with the 
 \pagebreak
 
 ## Electronique
+
+SCAD file: __full_view("elec")__.
 
 Needed parts:
 
@@ -186,7 +206,7 @@ Follow [this instructable](http://www.instructables.com/id/3D-Printer-RGB-LED-Fe
 
 Screw the arduino/ramps and inkshield boards to the ```elec_holder``` part and mount it in the frame as in Figure \ref{figureElectronique}. Plud the motor driver in the X and Y axis positions.
 
-![Electronique. \label{figureElectronique}](figure/Electronique.png){width=50%}
+![Electronique. \label{figureElectronique}](figure/elec.png){width=50%}
 
 \pagebreak
 
@@ -235,7 +255,7 @@ It is necessary to set a static IP address for the pi. As this is done different
 
 ### OC manager
 
-Follow the instruction on the github repository of [OC_manager](https://github.com/DimitriF/OC_manager). Steps could be missing and feedback are more than welcome.
+Follow the instruction on the github repository of [OC_manager](https://github.com/DimitriF/OC_manager). Steps could be missing and feedback are more than welcome. As a rule of thumb, a rapid google search with the error message can solve most problem.
 
 \pagebreak
 
@@ -247,6 +267,8 @@ The only calibration necessary is to position correctly the Y axis. To do so:
 * Connect the board
 * In the Fine control tab (Figure \ref{figureOC}): home the X axis and the Y axis, (if the motor are not in the good direction, turn off the full system and simply reverse the cable on the ramp)
 * With an ink cartridge in the cartridge holder and a plate in the 10x10 cm plate holder, click on ```fire selected nozzles```. The 12 ink droplets must be on the plate in the top left corner. Move the Y axis if necessary.
+
+This calibration procedure is not enough and is a known problem, ideally, a complementary procedure should be inserted in the code to add a bias in X and Y to every movement. The 3D printing environment was done to have reproducible movement __during the print__ and not between print.
 
 ![Fine tuning OC manager. \label{figureOC}](figure/OC_manager_calibration.png){width=40%}
 

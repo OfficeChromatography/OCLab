@@ -38,9 +38,9 @@ module X_axis(X=0,Y=0,Z=0){
         translate([rod_smooth_X_gap_X,rod_smooth_X_gap_Y,rod_smooth_X_gap_Z+i*rod_smooth_X_gap_Z_bis]) rotate([0,90,0]) cylinder(d=rod_smooth_d,h=rod_smooth_X_h,center=true);// X smooth
     }
     for(i = [-1,1]){
-            color("pink")translate([X,rod_smooth_X_gap_Y,rod_smooth_X_gap_Z+i*rod_smooth_X_gap_Z_bis]) rotate([0,90,0]) cylinder(d=lm8uu_OD,h=lm8uu_z,center=true);
+            color("pink")translate([X,rod_smooth_X_gap_Y,rod_smooth_X_gap_Z+i*rod_smooth_X_gap_Z_bis]) rotate([0,90,0]) cylinder(d=lm8uu_OD,h=lm8uu_z*2,center=true);
     }
-    //translate([motor_X_gap_X-4,motor_X_gap_Y+nema14_xy/2+5,motor_X_gap_Z-2]) rotate([90,0,180]) endstop();
+    translate([motor_X_gap_X-23,motor_X_gap_Y+nema14_xy/2+5,motor_X_gap_Z+30]) rotate([90,0,180]) endstop();
     translate([X,motor_X_gap_Y+16.5/2,motor_X_gap_Z]) rotate([90,0,0]) import("i3rework_Xcarriage.stl");
     X_belt();
     translate([623_X_gap_X,623_X_gap_Y,623_X_gap_Z]) rotate([-90,0,0])cylinder(d=623zz_OD+rabio,h=6,center=true);
@@ -54,6 +54,10 @@ module X_motor(){ // X_motor = Y_motor
 					translate([prof_X_gap,prof_Z_gap_Y-(prof_dim/2+milling_thick/2),motor_X_gap_Z]) cube([prof_dim,milling_thick,prof_dim*3.3+nema14_xy],center=true); // M5s
 					translate([X_motor_X_gap,motor_X_gap_Y,motor_X_gap_Z]) cube([milling_thick,nema14_xy/2,nema14_xy+5*rod_smooth_d],center=true); // rods
 					translate([motor_X_gap_X,motor_X_gap_Y-nema_axe_h/2+milling_thick/2,motor_X_gap_Z]) cube([nema14_xy,milling_thick,nema14_xy],center=true); // motor
+            hull(){//endstop
+               // translate([prof_X_gap,prof_Z_gap_Y-(prof_dim/2+2/2),motor_X_gap_Z+(prof_dim*3.3+nema14_xy-endstop_y)/2]) cube([prof_dim,2,endstop_y],center=true);
+               // translate([motor_X_gap_X-23,prof_Z_gap_Y-(prof_dim/2+2/2),motor_X_gap_Z+30]) cube([endstop_x,2,endstop_y],center=true);
+            }
             
         }
         union(){
@@ -66,7 +70,9 @@ module X_motor(){ // X_motor = Y_motor
                 translate([motor_X_gap_X+nema14_vis_space,prof_Z_gap_Y-5,motor_X_gap_Z+i*nema14_vis_space]) rotate([90,0,0]) cylinder(d=7,h=50,center=true); // M3 guides
             }
             M5s();// M5
+            X_belt(true);
             //translate([motor_X_gap_X,motor_X_gap_Y,motor_X_gap_Z]) rotate([0,-90,0]) nema14_neg_back();
+            translate([motor_X_gap_X-23,motor_X_gap_Y+nema14_xy/2+5,motor_X_gap_Z+30]) rotate([90,0,180]) endstop_neg();
         }
     }
 }
