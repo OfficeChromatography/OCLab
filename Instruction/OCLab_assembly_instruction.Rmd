@@ -90,6 +90,8 @@ Needed parts:
 
 Before assembling the frame, set the nuts to have one nut for each M5 screw shown in Figure \ref{figureFrame}. There is 76 in total. The best is to use the openscad file and turn the model around.
 
+The verticale profile in the middle as well as the horizontale one in the top-middle are situated 120 mm away from the ones in the back. 
+
 The outside frames can be found in the ```outside frames``` folder in pdf format. The plates to close the box can be added now or later but can make the assembly difficult, worth case scenario, they are put to early and need to be dismounted to grant access.
 
 ![Frame assembly. \label{figureFrame}](figure/frame.png){width=50%}
@@ -124,9 +126,11 @@ Insert the rods in the lm8uu housing. The rods must then fit in the ```Y_end``` 
 
 The endstop must be screw to the ```Y_endstop_holder``` and can be put appart for the moment and will be set during the assembly.
 
-![Y axis SCAD. \label{figureYaxis}](figure/Y axis.png){width=33%}
-![Y axis before.](figure/yaxis_before.jpg){width=33%}
-![Y axis after.](figure/yaxis_after.jpg){width=33%}
+![Y axis. \label{figureYaxis}](figure/Y.jpg)
+
+<!-- ![Y axis. \label{figureYaxis}](figure/Y axis.png){width=33%} -->
+<!-- ![Y axis before.](figure/yaxis_before.jpg){width=33%} -->
+<!-- ![Y axis after.](figure/yaxis_after.jpg){width=33%} -->
 
 \pagebreak
 
@@ -152,13 +156,13 @@ Needed parts:
 * 1x M3 nut
 * 2x M2 nut
 
-![X axis SCAD. \label{figureXaxis}](figure/X axis.png){width=33%}
-![X axis before.](figure/xaxis_before.jpg){width=33%}
-![X axis after.](figure/xaxis_after.jpg){width=33%}
+![X axis. \label{figureXaxis}](figure/X.jpg)
 
-Assemble the ```X_motor```, ```X_end``` and ```X_moving``` parts as for the Y axis. No te that the ```X_moving``` and ```X_end_stop_holder``` are taken from the other designs, the STL files are in the STL folder. 
+<!-- ![X axis SCAD. \label{figureXaxis}](figure/X axis.png){width=33%} -->
+<!-- ![X axis before.](figure/xaxis_before.jpg){width=33%} -->
+<!-- ![X axis after.](figure/xaxis_after.jpg){width=33%} -->
 
-Note that the ```X_moving``` part is taken from the prusa i3 design, it can be found in stl format in the SCAD and STL folder under the name ```i3rework_Xcarriage.stl```.
+Assemble the ```X_motor```, ```X_end``` and ```X_moving``` parts as for the Y axis. Note that the ```X_moving``` and ```X_end_stop_holder``` are taken from the other designs, the STL files are in the STL folder separatly but also in the main STL file. 
 
 The link between the ```HP C6602 holder``` and ```X_moving``` is made by the ```HP_C6602_holder_holder``` part, use M4 and M2 screws and nuts for this. M4 link to the ```X_moving``` and M2 to the ```HP C6602 holder```.
 
@@ -215,8 +219,11 @@ Follow [this instructable](http://www.instructables.com/id/3D-Printer-RGB-LED-Fe
 
 Screw the arduino/ramps and inkshield boards to the ```elec_holder``` part and mount it in the frame as in Figure \ref{figureElectronique}. Plud the motor driver in the X and Y axis positions.
 
-![Electronique SCAD. \label{figureElectronique}](figure/elec.png){width=50%}
-![Electronique.](figure/elec_wired.jpg){width=50%}
+
+![Electronique. \label{figureElectronique}](figure/elec.jpg)
+
+<!-- ![Electronique SCAD. \label{figureElectronique}](figure/elec.png){width=50%} -->
+<!-- ![Electronique.](figure/elec_wired.jpg){width=50%} -->
 
 \pagebreak
 
@@ -239,7 +246,7 @@ Wire the RGB LED as in Figure \ref{figureLEDWiring} with the difference that "Re
 
 For the UV LEDs, a separated power supply is necessary and it cannot be controled by the software. If a solution is found, the pin 59 is reserved for the 255 nm LED.
 
-![LED wiring. \label{figureLEDWiring}](figure/wiring_LED.jpg){width=80%}
+![LED wiring. \label{figureLEDWiring}](figure/wiring_LED.jpg){width=200%}
 
 ### Inkshield board
 
