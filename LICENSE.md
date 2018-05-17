@@ -1,4 +1,4 @@
-OC_manager
+OCLab
 ===========
 Copyright (C) {2017}  {Fichou Dimitri}
 {dimitrifichou@gmail.com}
