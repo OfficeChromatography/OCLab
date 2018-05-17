@@ -226,6 +226,12 @@ module elec_holder(){
             // X wall
             translate([0,-Y_dim/2+elec_holder_thick/2+prof_dim,Z_dim+frame_thick+elec_holder_Z/2]) cube([elec_holder_X,elec_holder_thick,elec_holder_Z],center=true);
             translate([0,-Y_dim/2+150,Z_dim+frame_thick+elec_holder_Z/2]) cube([elec_holder_X,elec_holder_thick,elec_holder_Z],center=true);
+            difference(){
+                translate([X_dim/2-70,-Y_dim/2+150,Z_dim+frame_thick+elec_holder_Z/2]) cube([70,20,elec_holder_Z],center=true);
+                translate([X_dim/2-70,-Y_dim/2+150,Z_dim+frame_thick+elec_holder_Z/2]) cube([55,50,elec_holder_Z+1],center=true);
+                translate([X_dim/2-70,-Y_dim/2+150,Z_dim+frame_thick+elec_holder_Z/2]) cube([65,15,elec_holder_Z+1],center=true);
+            }
+            
 
         }
         elec_neg();
@@ -458,6 +464,7 @@ echo("full profile: ",4*profs_X+4*profs_Y+6*profs_Z);
 echo("smooth X: 2*",rod_smooth_X_h); 
 echo("smooth Y: 2*",rod_smooth_Y_h); 
 echo("plate level: ",plate_gap_Z);
+echo("M5 nuts full prof: ",4*5+4*10+2+2+2+4*2+2);
 module full_view(type = "full",X=0,Y=0){
     if(type == "printed"){
         Y_motor();
@@ -468,7 +475,7 @@ module full_view(type = "full",X=0,Y=0){
         translate([0,150,10]) plate_holder_10_10();
         translate([0,-150,10]) plate_holder(elution=true);
         Y_endstop_holder();
-        translate([105,motor_X_gap_Y+12,motor_X_gap_Z-30]) rotate([90,0,-90]) import("Endstop_X_Support_Right.STL");
+        translate([85,motor_X_gap_Y+15,motor_X_gap_Z-30]) rotate([90,0,90]) import("Endstop_X_Support_Right.STL");
         translate([X,motor_X_gap_Y+16.5/2,motor_X_gap_Z]) rotate([90,0,0]) import("i3rework_Xcarriage.stl");
         X_motor();
         X_end();
@@ -559,7 +566,7 @@ module full_view(type = "full",X=0,Y=0){
         }
         feets();
 
-        translate([105,motor_X_gap_Y+12,motor_X_gap_Z-30]) rotate([90,0,-90]) import("Endstop_X_Support_Right.STL");
+        translate([105,motor_X_gap_Y+15,motor_X_gap_Z-30]) rotate([90,0,-90]) import("Endstop_X_Support_Right.STL");
         elec();
         elec_holder();
         translate([0,camera_Y_gap,Z_dim+1-prof_dim+3]) rotate([0,180,180])raspberryPiCamera();
@@ -600,4 +607,3 @@ module full_view(type = "full",X=0,Y=0){
 //full_view(type="X axis");
 full_view(type="printed");
 
-echo("M5 nuts: ",4*5+4*10+2+2+2+4*2+2);

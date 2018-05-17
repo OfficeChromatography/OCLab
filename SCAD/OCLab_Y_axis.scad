@@ -89,6 +89,7 @@ module Y_end(){
         Y_rods(rabio=rabio);
         translate([0,prof_Y_gap-prof_dim/2-milling_thick,623_Y_gap_Z]) cube([623zz_OD*1.5,milling_thick*3,8],center=true);
         Y_M3s(Y=Y,rabio=rabio);
+            translate([0,prof_Y_gap-prof_dim/2-milling_thick,0]) cylinder(h=6,d=8,center=true);
     }
 }
 
@@ -107,7 +108,7 @@ module Y_belt_holder(Y=0){
     color("gold")difference(){
         hull(){
             translate([4,Y,623_Y_gap_Z-6])cube([14,30,1],center=true);
-            translate([4,Y,rod_smooth_Y_gap_Z-1/2+housing_lm8uu_H/2])cube([14,30,1],center=true);
+            translate([4,Y,rod_smooth_Y_gap_Z-1/2+housing_lm8uu_H/2-3])cube([14,30,1],center=true);
         }
         translate([3,Y,623_Y_gap_Z])cube([7,30+rabio,7],center=true);
         
