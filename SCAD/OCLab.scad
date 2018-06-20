@@ -605,5 +605,5 @@ module full_view(type = "full",X=0,Y=0){
 //X_end();
 //front_frame("top");
 //full_view(type="X axis");
-full_view(type="printed");
+full_view(type="full");
 

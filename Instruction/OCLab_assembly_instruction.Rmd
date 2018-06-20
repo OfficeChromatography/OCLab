@@ -1,10 +1,8 @@
 ---
 title: "OCLab assembly instruction"
-author: "Dimitri Fichou"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-output:
+author: "Dimitri Fichou and Gertrud Morlock"
+output:  
   pdf_document: default
-  html_document: default
 header-includes:
 - \renewcommand{\floatpagefraction}{.6}%
 - \usepackage{placeins}
@@ -18,9 +16,9 @@ library(readxl)
 ```
 
 
-## Usefull ressources
+## Useful resources
 
-Some knowledge are mandatory to build this device. The following links should give an overview. Over this document, it is assumed a significant amount of time had been spend on those website nd that their content is known.
+Some knowledge is mandatory to build this device. The following links should give an overview. Over this document, it is assumed a significant amount of time had been spend on those websites and that their content is known.
 
 3D printing:
 
@@ -30,7 +28,7 @@ Some knowledge are mandatory to build this device. The following links should gi
 
 Information on each electronic board used:
 
-* [Ramps board](http://reprap.org/wiki/Ramps) (electronic of our machines)
+* [Ramps 1.4 board](http://reprap.org/wiki/Ramps) (electronic of our machines)
 * [Inkshield board for inkjet](http://nicholasclewis.com/projects/inkshield/theory/), more info from people who used the board [here](http://www.instructables.com/id/DIY-BioPrinter/), [here](http://garyhodgson.com/reprap/2012/04/inkshield-trying-to-run-before-i-can-walk/), [here](https://github.com/sjkelly/AMRI-Rice-201308-sjkelly). [Place to buy the cartridge](https://www.ebay.com/itm/Lot-of-200-Empty-Virgin-HP-C6602-Black-Ink-Cartridges-/151788284399)
 * [Raspberry pi project](https://www.raspberrypi.org/)
 * [Arduino project](https://www.arduino.cc/) (see [those courses](https://www.coursera.org/specializations/iot) for an introduction on the Internet of things)
@@ -43,7 +41,7 @@ Some software to install:
 
 Others:
 
-* [Instructable for LED control from the RAMP](http://www.instructables.com/id/3D-Printer-RGB-LED-Feedback/)
+* [Instructable for LED control from the Ramps 1.4](http://www.instructables.com/id/3D-Printer-RGB-LED-Feedback/)
 
 \pagebreak
 
@@ -53,7 +51,7 @@ Others:
 
 SCAD file: __full_view("printed")__.
 
-SCAD files can be found in the SCAD fodler, normally, only the file OCLab.scad is of interest. Each different module can be observed separatly by changing the argument of the ```full_view``` module.
+SCAD files can be found in the SCAD folder, normally, only the file OCLab.scad is of interest. Each different module can be observed separatly by changing the argument of the ```full_view``` module.
 
 ### STL folder
 
@@ -79,7 +77,7 @@ SCAD file: __full_view("frame")__.
 
 Needed parts:
 
-* 76x M5 nuts
+* 76x M5 sliding nuts
 * 20x20 profiles type I
 * 6x 20x20 cube connectors
 * 10x 20x20 angle connectors
@@ -94,7 +92,7 @@ The verticale profile in the middle as well as the horizontale one in the top-mi
 
 The outside frames can be found in the ```outside frames``` folder in pdf format. The plates to close the box can be added now or later but can make the assembly difficult, worth case scenario, they are put to early and need to be dismounted to grant access.
 
-![Frame assembly. \label{figureFrame}](figure/frame.png){width=50%}
+![Frame assembly. \label{figureFrame}](figure/frame.png)
 
 \pagebreak
 
@@ -111,12 +109,14 @@ Needed parts:
 * 1x endstop
 * 1x nema14
 * 1x gt2 pulley
-* printed parts: ```Y_endstop_holder```, ```Y_moving```, ```plate_holder```, ```Y_end``` and ```Y_motor```
-* 8x magnets
-* 16x M4x20
-* 3x M3x30
-* 4x M3x16
-* 2x M3x10
+* printed parts: ```Y_endstop_holder```, ```Y_moving```, ```plate_holder```, ```Y_belt_holder```, ```Y_end``` and ```Y_motor```
+* 8x magnets: cylinder OD = 8mm, height = 3mm
+* 16x M4x10 (lm8uu housing)
+* 3x M3x30 (belt holder + 623zz bearing)
+* 4x M3x12 (motor)
+* 2x M3x10 (endstop)
+* 9x M3 washers
+* 5x M3 nuts
 
 Assemble the Y axis as in Figure \ref{figureYaxis}. Start by the ```Y_moving``` part, screw the lm8uu housing (with the lm8uu in). For the belt holder, be carrefull with the direction, it can be changed when the belt will be tightned during the assembly to the frame if needed. 
 
@@ -126,11 +126,13 @@ Insert the rods in the lm8uu housing. The rods must then fit in the ```Y_end``` 
 
 The endstop must be screw to the ```Y_endstop_holder``` and can be put appart for the moment and will be set during the assembly.
 
-![Y axis. \label{figureYaxis}](figure/Y.jpg)
+<!-- ![Y axis. \label{figureYaxis}](figure/Y.jpg) -->
 
-<!-- ![Y axis. \label{figureYaxis}](figure/Y axis.png){width=33%} -->
-<!-- ![Y axis before.](figure/yaxis_before.jpg){width=33%} -->
-<!-- ![Y axis after.](figure/yaxis_after.jpg){width=33%} -->
+![Y axis. \label{figureYaxis}](figure/Y axis.png)
+
+![Y axis before. \label{figureYaxisbefore}](figure/yaxis_before.jpg)
+
+![Y axis after. \label{figureYaxisafter}](figure/yaxis_after.jpg)
 
 \pagebreak
 
@@ -148,23 +150,27 @@ Needed parts:
 * 1x gt2 pulley
 * printed parts: ```X_motor```, ```X_end```, ```X_moving```, ```HP_C6602_holder_holder```, ```X_end_stop_holder```
 * HP C6602 holder
-* 2x M4x20 
-* 2x M4 nut
-* 1x M3x30
-* 4x M3x10
-* 2x M2*10 
-* 1x M3 nut
-* 2x M2 nut
+* 2x M4x20 (HP_C6602_holder_holder)
+* 2x M4 nut (HP_C6602_holder_holder)
+* 1x M3x30 (623zz bearing) 
+* 4x M3x10 (motor)
+* 2x M2*10 (HP_C6602_holder_holder)
+* 1x M3 nut (623zz bearing)
+* 2x M2 nut (HP_C6602_holder_holder)
+* 4x M3 washer (motor)
 
-![X axis. \label{figureXaxis}](figure/X.jpg)
+<!-- ![X axis. \label{figureXaxis}](figure/X.jpg) -->
 
-<!-- ![X axis SCAD. \label{figureXaxis}](figure/X axis.png){width=33%} -->
-<!-- ![X axis before.](figure/xaxis_before.jpg){width=33%} -->
-<!-- ![X axis after.](figure/xaxis_after.jpg){width=33%} -->
+![X axis SCAD. \label{figureXaxis}](figure/X axis.png)
 
-Assemble the ```X_motor```, ```X_end``` and ```X_moving``` parts as for the Y axis. Note that the ```X_moving``` and ```X_end_stop_holder``` are taken from the other designs, the STL files are in the STL folder separatly but also in the main STL file. 
+![X axis before. \label{figurexaxisbefore}](figure/xaxis_before.jpg)
+
+![X axis after. \label{figurexaxisafter}](figure/xaxis_after.jpg)
+
+Assemble the ```X_motor```, ```X_end``` and ```X_moving``` parts as for the Y axis. Note that the ```X_moving``` and ```X_end_stop_holder``` are taken from the other designs, the STL files are in the STL folder separatly but also in the main STL file, taken from [prusa i3 rework](https://www.thingiverse.com/thing:119616). 
 
 The link between the ```HP C6602 holder``` and ```X_moving``` is made by the ```HP_C6602_holder_holder``` part, use M4 and M2 screws and nuts for this. M4 link to the ```X_moving``` and M2 to the ```HP C6602 holder```.
+
 
 \pagebreak
 
@@ -181,26 +187,26 @@ Needed parts:
 * 10x M5
 * belts
 
-Position the X axis and Y axis as in Figure \ref{figureAssembled}. The belt must be tightned and blocked with zip-ties.
+Position the X axis and Y axis as in Figure \ref{figureAssembled}. The belt must be tightened and blocked with zip-ties.
 
-The X axis must be position as low as possible while avoiding colision with the plate hodler. The Y axis will be positioned later when the cartridge will be able to fire.
+The X axis must be position as low as possible while avoiding collision with the plate holder. The Y axis will be positioned later when the cartridge will be able to fire.
 
 
 
-![Assembled. \label{figureAssembled}](figure/assembled.png){width=50%}
+![Assembled. \label{figureAssembled}](figure/assembled.png)
 
 \pagebreak
 
-## Electronique
+## Electronics
 
 SCAD file: __full_view("elec")__.
 
 Needed parts:
 
 * printed parts: ```elec_holder```, ```camera_holder```
-* raspberry pi
-* arduino mega
-* ramsp 1.4
+* Raspberry pi
+* Arduino mega
+* Ramsp 1.4
 * 2x A9688 motor drivers
 * LED strip
 * Prototype soldering plate
@@ -215,38 +221,39 @@ Solder the inkshield board as shown on the [website](http://nicholasclewis.com/p
 
 Mount the UV LED to an appropriate board (screw distance 35.5mm, hole for camera lens centered in the middle) and connect it to the ```camera_holder```.
 
-Follow [this instructable](http://www.instructables.com/id/3D-Printer-RGB-LED-Feedback/) to make the electronic for the RGB LED strips. The LED strips must be attached with double side tape to the ```camera_holder``` part.
+Follow [this instructable](http://www.instructables.com/id/3D-Printer-RGB-LED-Feedback/) to make the electronics for the RGB LED strips. The LED strips must be attached with double sided tape to the ```camera_holder``` part.
 
-Screw the arduino/ramps and inkshield boards to the ```elec_holder``` part and mount it in the frame as in Figure \ref{figureElectronique}. Plud the motor driver in the X and Y axis positions.
+Screw the Arduino/Ramps and inkshield boards to the ```elec_holder``` part and mount it in the frame as in Figure \ref{figureElectronique}. Plug the motor driver in the X and Y axis positions.
 
 
-![Electronique. \label{figureElectronique}](figure/elec.jpg)
+<!-- ![Electronique. \label{figureElectronique}](figure/elec.jpg) -->
 
-<!-- ![Electronique SCAD. \label{figureElectronique}](figure/elec.png){width=50%} -->
-<!-- ![Electronique.](figure/elec_wired.jpg){width=50%} -->
+![Electronic SCAD. \label{figureElectronique}](figure/elec.png)
+
+![Electronic. \label{figureElectronique_wired}](figure/elec_wired.jpg)
 
 \pagebreak
 
 
 ## Wiring
 
-The scematic of the ramps is the presented in Figure \ref{figureRamp}.
+The schematic of the Ramps 1.4 is presented in Figure \ref{figureRamp}.
 
-![Ramp scematic. \label{figureRamp}](figure/ramps_schematic.png){width=40%}
+![Ramps 1.4 schematic. \label{figureRamp}](figure/ramps_schematic.png)
 
 ### Motors and endstop
 
-Wire the ramps board as in the Figure \ref{figureMotorWiring}. Only the X and Y motor are used, including their respective endstops. Note that this figure is extracted from a 3D printer wiring.
+Wire the Ramps 1.4 board as in the Figure \ref{figureMotorWiring}. Only the X and Y motor are used, including their respective endstops. Note that this figure is extracted from a 3D printer wiring.
 
-![Motor wiring. \label{figureMotorWiring}](figure/wiring_motor.png){width=40%}
+![Motor wiring. \label{figureMotorWiring}](figure/wiring_motor.png)
 
 ### LEDs
 
 Wire the RGB LED as in Figure \ref{figureLEDWiring} with the difference that "Red" = 44,"Green"=66,"Blue"=64. Again, go back to [the instructable](http://www.instructables.com/id/3D-Printer-RGB-LED-Feedback/) if needed and refer to Figure \ref{figureRamp}.
 
-For the UV LEDs, a separated power supply is necessary and it cannot be controled by the software. If a solution is found, the pin 59 is reserved for the 255 nm LED.
+For the UV LEDs, a separated power supply is necessary and it cannot be controlled by the software. If a solution is found, the pin 59 is reserved for the 255 nm LED.
 
-![LED wiring. \label{figureLEDWiring}](figure/wiring_LED.jpg){width=200%}
+![LED wiring. \label{figureLEDWiring}](figure/wiring_LED.png)
 
 ### Inkshield board
 
@@ -260,19 +267,20 @@ Similarly to the RGB LEDs, connect the inkshield board with ribbon female-female
 
 ### Uploading the firmware
 
-Use the [Arduino IDE](https://www.arduino.cc/en/Main/Software) to upload the Marlin firmware present in the github repository to control the board. Open the ```Marlin.ino``` file and flash the firmware on the board while connected to usb (Figure \ref{figureMarlin}).
+Install the [1.0.x release of the Arduino IDE](https://www.arduino.cc/en/Main/OldSoftwareReleases#1.0.x) on your PC. The version of Marlin used is only compatible with this IDE.
 
-![Marlin upload. \label{figureMarlin}](figure/Marlin.png){width=40%}
+Upload the Marlin firmware present in the github repository of OCLab to control the board. Open the ```Marlin.ino``` file and flash the firmware on the board while connected via the USB cable that you  normally received with the Arduino (Figure \ref{figureMarlin}).
 
-### Flash the sd card for the raspberry pi
 
-Follow [online instruction](https://www.raspberrypi.org/documentation/installation/installing-images/) to flash the sd card on the raspberry pi (a sd card with everything set up is planned but not yet available). In the mean time, use the latest version of rasbian.
+![Marlin upload. \label{figureMarlin}](figure/Marlin.png)
 
-It is necessary to set a static IP address for the pi. As this is done differently depending of rasbian version, look for an up to date answer online. Once the SD card is flashed, the raspberry pi can be screwed in the ```elec_holder``` part.
 
 ### OC manager
 
-Follow the instruction on the github repository of [OC_manager](https://github.com/DimitriF/OC_manager). Steps could be missing and feedback are more than welcome. As a rule of thumb, a rapid google search with the error message can solve most problem.
+Follow the instruction on the github repository of [OC_manager](https://github.com/DimitriF/OC_manager). Steps could be missing and feedbacks are more than welcome. As a rule of thumb, a rapid google search with the error message can solve most problems.
+
+You can choose to install it from scratch or to use the prepared SD card to be use directly with a Raspberry pi, in both cases, you will need to set-up a static IP to access it from the network.
+
 
 \pagebreak
 
@@ -280,12 +288,12 @@ Follow the instruction on the github repository of [OC_manager](https://github.c
 
 The only calibration necessary is to position correctly the Y axis. To do so:
 
-* Open OC_manager by going in your browser on the IP address of the raspberry pi, 
+* Open OC_manager by going in your browser on the IP address of the Raspberry pi, 
 * Connect the board
 * In the Fine control tab (Figure \ref{figureOC}): home the X axis and the Y axis, (if the motor are not in the good direction, turn off the full system and simply reverse the cable on the ramp)
 * With an ink cartridge in the cartridge holder and a plate in the 10x10 cm plate holder, click on ```fire selected nozzles```. The 12 ink droplets must be on the plate in the top left corner. Move the Y axis if necessary.
 
 This calibration procedure is not enough and is a known problem, ideally, a complementary procedure should be inserted in the code to add a bias in X and Y to every movement. The 3D printing environment was done to have reproducible movement __during the print__ and not between print.
 
-![Fine tuning OC manager. \label{figureOC}](figure/OC_manager_calibration.png){width=40%}
+![Fine tuning OC manager. \label{figureOC}](figure/OC_manager_calibration.png)
 
