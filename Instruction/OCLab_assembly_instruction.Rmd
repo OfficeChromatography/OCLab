@@ -30,7 +30,7 @@ Information on each electronic board used:
 
 * [Ramps 1.4 board](http://reprap.org/wiki/Ramps) (electronic of our machines)
 * [Inkshield board for inkjet](http://nicholasclewis.com/projects/inkshield/theory/), more info from people who used the board [here](http://www.instructables.com/id/DIY-BioPrinter/), [here](http://garyhodgson.com/reprap/2012/04/inkshield-trying-to-run-before-i-can-walk/), [here](https://github.com/sjkelly/AMRI-Rice-201308-sjkelly). [Place to buy the cartridge](https://www.ebay.com/itm/Lot-of-200-Empty-Virgin-HP-C6602-Black-Ink-Cartridges-/151788284399)
-* [Raspberry pi project](https://www.raspberrypi.org/)
+* [Raspberry Pi project](https://www.raspberrypi.org/)
 * [Arduino project](https://www.arduino.cc/) (see [those courses](https://www.coursera.org/specializations/iot) for an introduction on the Internet of things)
 
 Some software to install:
@@ -204,7 +204,7 @@ SCAD file: __full_view("elec")__.
 Needed parts:
 
 * printed parts: ```elec_holder```, ```camera_holder```
-* Raspberry pi
+* Raspberry Pi
 * Arduino mega
 * Ramsp 1.4
 * 2x A9688 motor drivers
@@ -279,7 +279,7 @@ Upload the Marlin firmware present in the github repository of OCLab to control 
 
 Follow the instruction on the github repository of [OC_manager](https://github.com/DimitriF/OC_manager). Steps could be missing and feedbacks are more than welcome. As a rule of thumb, a rapid google search with the error message can solve most problems.
 
-You can choose to install it from scratch or to use the prepared SD card to be use directly with a Raspberry pi, in both cases, you will need to set-up a static IP to access it from the network.
+You can choose to install it from scratch or to use the prepared SD card to be use directly with a Raspberry Pi, in both cases, you will need to set-up a static IP to access it from the network.
 
 
 \pagebreak
@@ -288,7 +288,7 @@ You can choose to install it from scratch or to use the prepared SD card to be u
 
 The only calibration necessary is to position correctly the Y axis. To do so:
 
-* Open OC_manager by going in your browser on the IP address of the Raspberry pi, 
+* Open OC_manager by going in your browser on the IP address of the Raspberry Pi, 
 * Connect the board
 * In the Fine control tab (Figure \ref{figureOC}): home the X axis and the Y axis, (if the motor are not in the good direction, turn off the full system and simply reverse the cable on the ramp)
 * With an ink cartridge in the cartridge holder and a plate in the 10x10 cm plate holder, click on ```fire selected nozzles```. The 12 ink droplets must be on the plate in the top left corner. Move the Y axis if necessary.
