@@ -187,7 +187,7 @@ int EtoPPressure=0;
 #endif
 #ifdef HPC6602
 uint16_t strip;
-unsigned long last_inkjet[NUM_HPC6602];
+
 uint8_t ink_jet_number = 0;
 unsigned int max_count = 10;
 unsigned int ink_pulse_delay = 5;
@@ -1971,7 +1971,7 @@ void process_commands()
                     if (code_seen('S'))
                     {
                       strip = code_value();
-                      while(last_inkjet[ink_jet_number] + 800 > micros());
+                      
                       //loop through the nozzles
                       for(uint8_t i = 0; i <= 11; i++){
                         //See if nozzle is set to fire
@@ -1995,8 +1995,10 @@ void process_commands()
                           WRITE(INK_PINC, 0);
                           WRITE(INK_PIND, 0);
                         }
-                        last_inkjet[ink_jet_number] = micros();
+
                       }
+		      delayMicroseconds(800);			
+
                     }
                   }
                 }
